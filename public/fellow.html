@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Directory - IICE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .header {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 28px;
+            color: #1e4a73;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #1e4a73;
+        }
+
+        .member-btn {
+            background: #1e4a73;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .member-btn:hover {
+            background: #153a5e;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e4a73 0%, #2d5aa0 50%, #1e4a73 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)" /></svg>');
+            opacity: 0.3;
+        }
+
+        .hero h1 {
+            font-size: 54px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tabs {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .tabs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .tab {
+            padding: 18px 35px;
+            background: transparent;
+            color: #666;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            position: relative;
+        }
+
+        .tab:hover {
+            color: #1e4a73;
+            background: #f8f9fa;
+        }
+
+        .tab.active {
+            color: #1e4a73;
+            border-bottom-color: #1e4a73;
+            background: white;
+        }
+
+        .controls {
+            background: #f8f9fa;
+            padding: 25px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .controls-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 350px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 45px 12px 18px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #1e4a73;
+            box-shadow: 0 0 0 3px rgba(30, 74, 115, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 18px;
+        }
+
+        .filter-select, .sort-select {
+            padding: 12px 18px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-size: 15px;
+            color: #333;
+            min-width: 140px;
+            transition: border-color 0.3s;
+        }
+
+        .filter-select:focus, .sort-select:focus {
+            outline: none;
+            border-color: #1e4a73;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #f1f3f4;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .member-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px 25px;
+            text-align: center;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .member-avatar {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #1e4a73, #2d5aa0);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(30, 74, 115, 0.3);
+        }
+
+        .member-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1e4a73;
+        }
+
+        .member-title {
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .member-details {
+            padding: 25px;
+        }
+
+        .detail-section {
+            margin-bottom: 18px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .detail-section:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #1e4a73;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+
+        .detail-value {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .research-link {
+            color: #1e4a73;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .research-link:hover {
+            color: #2d5aa0;
+            text-decoration: underline;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+            color: #666;
+        }
+
+        .no-results h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1e4a73;
+        }
+
+        .no-results p {
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .tabs-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .tab {
+                padding: 15px 25px;
+                font-size: 15px;
+            }
+
+            .controls-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .members-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .member-card {
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .main-content {
+                padding: 30px 15px;
+            }
+
+            .member-header {
+                padding: 25px 20px;
+            }
+
+            .member-details {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+        <head>
+            <meta charset="utf-8">
+            <title>About IICE</title>
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+            <meta content="" name="keywords">
+            <meta content="" name="description">
+
+            <!-- Favicon -->
+            <link href="img/favicon.ico" rel="icon">
+
+            <!-- Google Web Fonts -->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"> 
+
+            <!-- Icon Font Stylesheet -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+            <!-- Libraries Stylesheet -->
+            <link href="lib/animate/animate.min.css" rel="stylesheet">
+            <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+            <!-- Customized Bootstrap Stylesheet -->
+            <link href="css/bootstrap.min.css" rel="stylesheet">
+
+            <!-- Template Stylesheet -->
+            <link href="css/style.css" rel="stylesheet">
+        </head>
+
+        <!-- Page Header Start -->
+        <div class="container-fluid page-header py-6 wow fadeIn position-relative" data-wow-delay="0.1s"
+            style="background: url('https://www.cgsinc.com/sites/default/files/styles/product_section_960x800/public/BPO-Group-Handsv2.png?itok=x6xfgVnd') center center/cover no-repeat;">
+
+            <!-- Blue Overlay -->
+            <div class="position-absolute top-0 start-0 w-100 h-100" 
+                style="background: rgba(14, 36, 71, 0.5); z-index:1;"></div>
+
+            <!-- Text Content -->
+            <div class="container text-center pt-5 pb-3 position-relative" style="z-index:2;">
+                <h1 class="display-4 text-white fw-bold animated slideInDown mb-2">Members</h1>
+                <h3 class="text-white fw-light animated slideInDown mb-3">Fellow</h3>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+
+
+
+
+
+
+
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+            <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
+                <img src="img/iice.png" alt="IICE Logo" style="height:50px;">
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav mx-auto p-4 p-lg-0">
+                    
+                    <!-- Homepage -->
+                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    
+                    <!-- Members -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Members</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="fellow.html" class="dropdown-item">Fellow</a>
+                            <a href="associate.html" class="dropdown-item">Associate</a>
+                            <a href="postdoctoral.html" class="dropdown-item">Postdoctoral</a>
+                            <a href="postgraduate.html" class="dropdown-item">Postgraduate</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Research -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Research</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="researcharea.html" class="dropdown-item">Research Area</a>
+                            <a href="researchproject.html" class="dropdown-item">Research Project</a>
+                            <a href="consultancy.html" class="dropdown-item">Consultancy</a>
+                            <a href="researchprofile.html" class="dropdown-item">IICE Research Profile</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Training -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Training</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="trainingcategory.html" class="dropdown-item">Category</a>
+                            <a href="trainerprofile.html" class="dropdown-item">Trainer Profile</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Activity -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Activity</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="chairactivity.html" class="dropdown-item">Chair in EI</a>
+                            <a href="staffactivity.html" class="dropdown-item">Staff</a>
+                            <a href="studentactivity.html" class="dropdown-item">Student</a>
+                        </div>
+                    </div>
+
+                    <!-- Chair in EI (keep only if you want as main menu) -->
+                    <a href="chairinei.html" class="nav-item nav-link">Chair in EI</a>
+                    
+                    <!-- About -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="aboutiice.html" class="dropdown-item">About</a>
+                            <a href="linkages.html" class="dropdown-item">Linkages</a>
+                            <a href="fundproviders.html" class="dropdown-item">Fund Providers</a>
+                            <a href="publication.html" class="dropdown-item">Publication</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+
+    <div class="controls">
+        <div class="controls-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search members...">
+                <span class="search-icon">🔍</span>
+            </div>
+            <select class="filter-select" id="filterSelect">
+                <option value="">All Categories</option>
+                <option value="engineering">Engineering</option>
+                <option value="computer-science">Computer Science</option>
+                <option value="research">Research</option>
+            </select>
+            <select class="sort-select" id="sortSelect">
+                <option value="name">Sort by Name</option>
+                <option value="title">Sort by Title</option>
+                <option value="research">Sort by Research Area</option>
+            </select>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="members-grid" id="membersGrid">
+            <!-- Members will be populated by JavaScript -->
+        </div>
+        <div class="no-results" id="noResults" style="display: none;">
+            <h3>No members found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+        </div>
+    </main>
+
+    <script>
+        // Sample member data
+        const membersData = {
+            core: [
+                {
+                    name: "DR. JOHN LEE",
+                    title: "Head",
+                    email: "john.lee@university.edu",
+                    researchArea: "Data Science and Machine Learning",
+                    position: "Professor",
+                    department: "Computer Science",
+                    researchLink: "Research Area",
+                    category: "engineering"
+                },
+                {
+                    name: "DR. SARAH CHEN",
+                    title: "Senior Researcher",
+                    email: "sarah.chen@university.edu",
+                    researchArea: "Artificial Intelligence",
+                    position: "Associate Professor",
+                    department: "Computer Science", 
+                    researchLink: "Research Area",
+                    category: "computer-science"
+                }
+            ],
+            associate: [
+                {
+                    name: "DR. JAY JOHN",
+                    title: "Head",
+                    email: "jay.john@university.edu",
+                    researchArea: "Biomedical Engineering",
+                    position: "Assistant Professor",
+                    department: "Engineering",
+                    researchLink: "Research Area",
+                    category: "engineering"
+                },
+                {
+                    name: "DR. MARIA GARCIA",
+                    title: "Researcher",
+                    email: "maria.garcia@university.edu",
+                    researchArea: "Materials Science",
+                    position: "Research Fellow",
+                    department: "Engineering",
+                    researchLink: "Research Area",
+                    category: "research"
+                }
+            ],
+            postdoctoral: [
+                {
+                    name: "DR. PETER LEE",
+                    title: "Head",
+                    email: "peter.lee@university.edu",
+                    researchArea: "Quantum Computing",
+                    position: "Postdoctoral Fellow",
+                    department: "Physics",
+                    researchLink: "Research Area",
+                    category: "computer-science"
+                }
+            ],
+            postgraduate: [
+                {
+                    name: "ALEX JOHNSON",
+                    title: "PhD Student",
+                    email: "alex.johnson@student.edu",
+                    researchArea: "Machine Learning Applications",
+                    position: "Graduate Student",
+                    department: "Computer Science",
+                    researchLink: "Research Area",
+                    category: "computer-science"
+                }
+            ]
+        };
+
+        let currentCategory = 'core';
+        let currentMembers = [...membersData[currentCategory]];
+
+        function createMemberCard(member) {
+            const initials = member.name.split(' ').map(n => n[0]).join('');
+            
+            return `
+                <div class="member-card" data-category="${member.category}" data-name="${member.name.toLowerCase()}">
+                    <div class="member-header">
+                        <div class="member-avatar">${initials}</div>
+                        <div class="member-name">${member.name}</div>
+                        <div class="member-title">${member.title}</div>
+                    </div>
+                    <div class="member-details">
+                        <div class="detail-section">
+                            <div class="detail-label">Position</div>
+                            <div class="detail-value">${member.position}</div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Research Area</div>
+                            <div class="detail-value">
+                                <a href="#" class="research-link">${member.researchArea}</a>
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Department</div>
+                            <div class="detail-value">${member.department}</div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Email</div>
+                            <div class="detail-value">${member.email}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMembers(members) {
+            const grid = document.getElementById('membersGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (members.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+            grid.innerHTML = members.map(createMemberCard).join('');
+        }
+
+        function filterAndSort() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filterValue = document.getElementById('filterSelect').value;
+            const sortValue = document.getElementById('sortSelect').value;
+            
+            let filtered = [...membersData[currentCategory]];
+            
+            // Apply search
+            if (searchTerm) {
+                filtered = filtered.filter(member => 
+                    member.name.toLowerCase().includes(searchTerm) ||
+                    member.researchArea.toLowerCase().includes(searchTerm) ||
+                    member.department.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            // Apply filter
+            if (filterValue) {
+                filtered = filtered.filter(member => member.category === filterValue);
+            }
+            
+            // Apply sort
+            filtered.sort((a, b) => {
+                switch(sortValue) {
+                    case 'name':
+                        return a.name.localeCompare(b.name);
+                    case 'title':
+                        return a.title.localeCompare(b.title);
+                    case 'research':
+                        return a.researchArea.localeCompare(b.researchArea);
+                    default:
+                        return 0;
+                }
+            });
+            
+            renderMembers(filtered);
+        }
+
+        // Event listeners
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                // Update active tab
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // Switch category
+                currentCategory = e.target.dataset.category;
+                filterAndSort();
+            });
+        });
+
+        document.getElementById('searchInput').addEventListener('input', filterAndSort);
+        document.getElementById('filterSelect').addEventListener('change', filterAndSort);
+        document.getElementById('sortSelect').addEventListener('change', filterAndSort);
+
+        // Initial render
+        renderMembers(membersData[currentCategory]);
+    </script>
+</body>
+</html>
