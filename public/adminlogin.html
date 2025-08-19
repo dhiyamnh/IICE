@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /********** Template CSS **********/
+        :root {
+            /* Main Colors */
+            --primary: #0F4C81;    /* UNITEN Dark Blue */
+            --secondary: #CC0000;  /* Malaysian Red */
+            --gold: #E8B730;   /* UNITEN Gold */
+            --light: #F5F5F5;       /* Light background */
+            --dark: #222222;        /* Dark text */
+            --white: #FFFFFF;
+            --gray: #6C757D;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark);
+            background: url('img/carousel_1.jpg') no-repeat center center fixed; /* Replace with your image path */
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7); /* Translucent white */
+            z-index: -1; /* Place it behind the content */
+        }
+
+        h1, h2, h3, h4, h5, h6,
+        .h1, .h2, .h3, .h4, .h5, .h6 {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
+        /* Header with Logo */
+        .login-header {
+            background: var(--white);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .logo-container img {
+            max-height: 80px;
+        }
+
+        .iice-title {
+            color: var(--primary);
+            font-size: 48px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .institute-subtitle {
+            color: var(--secondary);
+            font-size: 16px;
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* Login Container */
+        .login-container {
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 450px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .login-body {
+            padding: 40px;
+        }
+
+        .welcome-text {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 32px;
+        }
+
+        /* Form Styling */
+        .form-label {
+            color: var(--dark);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            padding: 15px;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid #e1e5e9;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(15, 76, 129, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: #adb5bd;
+        }
+
+        /* Checkbox and Forgot Password */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-check-input {
+            margin-right: 8px;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .form-check-label {
+            color: var(--dark);
+            font-size: 14px;
+        }
+
+        .forgot-password {
+            color: var(--gray);
+            font-size: 14px;
+            text-decoration: underline;
+        }
+
+        .forgot-password:hover {
+            color: var(--primary);
+        }
+
+        /* Login Button */
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            background: var(--primary);
+            border: none;
+            border-radius: 8px;
+            color: var(--white);
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .btn-login:hover {
+            background: #0D3E6D;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(15, 76, 129, 0.3);
+        }
+
+        /* Footer */
+        .login-footer {
+            background: var(--secondary);
+            padding: 20px 0;
+            color: var(--white);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .language-select {
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            font-size: 16px;
+        }
+
+        .language-select i {
+            margin-right: 8px;
+            color: var(--gold);
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .iice-title {
+                font-size: 36px;
+            }
+
+            .institute-subtitle {
+                font-size: 14px;
+            }
+
+            .login-body {
+                padding: 30px 25px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .footer-links {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 20px 15px;
+            }
+
+            .login-container {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <button class="back-btn" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <!-- Header with Logo -->
+    <div class="login-header">
+        <div class="logo-container">
+            <img src="img/iice.png" alt="UNITEN Logo">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="login-container">
+            <div class="login-body">
+                <div class="welcome-text">Welcome</div>
+                
+                <form id="adminLoginForm">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Username" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password" required>
+                    </div>
+                    
+                    <div class="form-options">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-login">
+                        Log In
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="login-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Contact Us</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="language-select">
+                <i class="fas fa-check"></i> English
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap & jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        $(document).ready(function() {
+            // Form submission
+            $('#adminLoginForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const username = $('#username').val();
+                const password = $('#password').val();
+                
+                // Basic validation
+                if (!username || !password) {
+                    alert('Please enter both username and password');
+                    return;
+                }
+                
+                // Here you would typically make an AJAX request to your backend
+                console.log('Login attempt:', {username, password});
+                
+                // Simulate successful login (replace with actual authentication)
+                alert('Login functionality would connect to backend API');
+            });
+
+            // Add some smooth animations
+            $('.login-container').hide().fadeIn(800);
+            
+            // Focus on username field
+            setTimeout(() => {
+                $('#username').focus();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
