@@ -174,20 +174,26 @@
             flex-wrap: wrap;
         }
 
-        .search-input {
+        .search-box {
+            position: relative;
             flex: 1;
-            max-width: 320px;
-            padding: 12px 16px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 14px;
-            background: white;
+            max-width: 350px;
         }
 
-        .search-input:focus {
+        .search-box input {
+            width: 100%;
+            padding: 12px 45px 12px 18px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-box input:focus {
             outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            border-color: #1e4a73;
+            box-shadow: 0 0 0 3px rgba(30, 74, 115, 0.1);
         }
 
         .search-icon {
@@ -446,7 +452,9 @@
             <!-- Text Content -->
             <div class="container text-center pt-5 pb-3 position-relative" style="z-index:2;">
                 <h1 class="display-4 text-white fw-bold animated slideInDown mb-2">Members</h1>
-                <h3 class="text-white fw-light animated slideInDown mb-3">Fellow</h3>
+                <h3 class="text-white fw-light animated slideInDown mb-3">Postgraduate
+                
+                </h3>
             </div>
         </div>
         <!-- Page Header End -->
@@ -532,23 +540,25 @@
         </nav>
         <!-- Navbar End -->
 
-   <!-- Clean Controls -->
-    <section class="controls">
+    <div class="controls">
         <div class="controls-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search members...">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search members...">
+                <span class="search-icon">🔍</span>
+            </div>
             <select class="filter-select" id="filterSelect">
-                <option value="">All Departments</option>
+                <option value="">All Categories</option>
                 <option value="engineering">Engineering</option>
                 <option value="computer-science">Computer Science</option>
                 <option value="research">Research</option>
             </select>
-            <select class="filter-select" id="sortSelect">
+            <select class="sort-select" id="sortSelect">
                 <option value="name">Sort by Name</option>
-                <option value="university">Sort by University</option>
-                <option value="research">Sort by Research</option>
+                <option value="title">Sort by Title</option>
+                <option value="research">Sort by Research Area</option>
             </select>
         </div>
-    </section>
+    </div>
 
     <main class="main-content">
         <div class="members-grid" id="membersGrid">
@@ -560,33 +570,87 @@
         </div>
     </main>
 
-        // Sample member data
     <script>
-        // Core members only
-        const membersData = [
-            {
-                name: "PROF. TS. DR. SALMAN YUSSOF",
-                title: "Director",
-                email: "Salman@uniten.edu.my",
-                researchArea: "Computer Systems and Networks, Cyber Security, Smart Grid, Internet of Things, Emergency Informatics",
-                qualification: "BSc. Elec & Comp. Eng (Carnegie Mellon University, USA), MSc. Elec & Comp. Eng (Carnegie Mellon University, USA), Ph.D. (Universiti Tenaga Nasional, Malaysia))",
-                department: "Computer Science"
-            },
-            {
-                name: "TS. DR. NAZRITA IBRAHIM",
-                title: "Senior Researcher",
-                email: "nazrita[at]uniten.edu.my",
-                researchArea: "User Experience Design, Information Visualisation, Energy Informatics",
-                qualification: "BA (Mod) Comp. Sci. (Trinity College, University of Dublin, Ireland), M.Comp.Sci (Universiti Malaya, Malaysia), Ph.D. (Universiti Kebangsaan Malaysia, Malaysia)",
-                department: "Computer Science"
-            }
-        ];
+        // Sample member data
+        const membersData = {
+            core: [
+                {
+                    name: "DR. JOHN LEE",
+                    title: "Head",
+                    email: "john.lee@university.edu",
+                    researchArea: "Data Science and Machine Learning",
+                    position: "Professor",
+                    department: "Computer Science",
+                    researchLink: "Research Area",
+                    category: "engineering"
+                },
+                {
+                    name: "DR. SARAH CHEN",
+                    title: "Senior Researcher",
+                    email: "sarah.chen@university.edu",
+                    researchArea: "Artificial Intelligence",
+                    position: "Associate Professor",
+                    department: "Computer Science", 
+                    researchLink: "Research Area",
+                    category: "computer-science"
+                }
+            ],
+            associate: [
+                {
+                    name: "DR. JAY JOHN",
+                    title: "Head",
+                    email: "jay.john@university.edu",
+                    researchArea: "Biomedical Engineering",
+                    position: "Assistant Professor",
+                    department: "Engineering",
+                    researchLink: "Research Area",
+                    category: "engineering"
+                },
+                {
+                    name: "DR. MARIA GARCIA",
+                    title: "Researcher",
+                    email: "maria.garcia@university.edu",
+                    researchArea: "Materials Science",
+                    position: "Research Fellow",
+                    department: "Engineering",
+                    researchLink: "Research Area",
+                    category: "research"
+                }
+            ],
+            postdoctoral: [
+                {
+                    name: "DR. PETER LEE",
+                    title: "Head",
+                    email: "peter.lee@university.edu",
+                    researchArea: "Quantum Computing",
+                    position: "Postdoctoral Fellow",
+                    department: "Physics",
+                    researchLink: "Research Area",
+                    category: "computer-science"
+                }
+            ],
+            postgraduate: [
+                {
+                    name: "ALEX JOHNSON",
+                    title: "PhD Student",
+                    email: "alex.johnson@student.edu",
+                    researchArea: "Machine Learning Applications",
+                    position: "Graduate Student",
+                    department: "Computer Science",
+                    researchLink: "Research Area",
+                    category: "computer-science"
+                }
+            ]
+        };
+
+        let currentCategory = 'core';
+        let currentMembers = [...membersData[currentCategory]];
 
         function createMemberCard(member) {
             const initials = member.name.split(' ').map(n => n[0]).join('');
-
+            
             return `
-                <div class="member-card">
+                <div class="member-card" data-category="${member.category}" data-name="${member.name.toLowerCase()}">
                     <div class="member-header">
                         <div class="member-avatar">${initials}</div>
                         <div class="member-name">${member.name}</div>
@@ -594,12 +658,14 @@
                     </div>
                     <div class="member-details">
                         <div class="detail-section">
-                            <div class="detail-label">Qualification</div>
-                            <div class="detail-value">${member.qualification}</div>
+                            <div class="detail-label">Position</div>
+                            <div class="detail-value">${member.position}</div>
                         </div>
                         <div class="detail-section">
                             <div class="detail-label">Research Area</div>
-                            <div class="detail-value">${member.researchArea}</div>
+                            <div class="detail-value">
+                                <a href="#" class="research-link">${member.researchArea}</a>
+                            </div>
                         </div>
                         <div class="detail-section">
                             <div class="detail-label">Department</div>
@@ -617,13 +683,13 @@
         function renderMembers(members) {
             const grid = document.getElementById('membersGrid');
             const noResults = document.getElementById('noResults');
-
+            
             if (members.length === 0) {
                 grid.style.display = 'none';
                 noResults.style.display = 'block';
                 return;
             }
-
+            
             grid.style.display = 'grid';
             noResults.style.display = 'none';
             grid.innerHTML = members.map(createMemberCard).join('');
@@ -631,23 +697,28 @@
 
         function filterAndSort() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filterValue = document.getElementById('filterSelect').value;
             const sortValue = document.getElementById('sortSelect').value;
-
-            let filtered = [...membersData];
-
+            
+            let filtered = [...membersData[currentCategory]];
+            
             // Apply search
             if (searchTerm) {
-                filtered = filtered.filter(member =>
+                filtered = filtered.filter(member => 
                     member.name.toLowerCase().includes(searchTerm) ||
                     member.researchArea.toLowerCase().includes(searchTerm) ||
-                    member.department.toLowerCase().includes(searchTerm) ||
-                    member.qualification.toLowerCase().includes(searchTerm)
+                    member.department.toLowerCase().includes(searchTerm)
                 );
             }
-
+            
+            // Apply filter
+            if (filterValue) {
+                filtered = filtered.filter(member => member.category === filterValue);
+            }
+            
             // Apply sort
             filtered.sort((a, b) => {
-                switch (sortValue) {
+                switch(sortValue) {
                     case 'name':
                         return a.name.localeCompare(b.name);
                     case 'title':
@@ -658,17 +729,29 @@
                         return 0;
                 }
             });
-
+            
             renderMembers(filtered);
         }
 
         // Event listeners
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                // Update active tab
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // Switch category
+                currentCategory = e.target.dataset.category;
+                filterAndSort();
+            });
+        });
+
         document.getElementById('searchInput').addEventListener('input', filterAndSort);
+        document.getElementById('filterSelect').addEventListener('change', filterAndSort);
         document.getElementById('sortSelect').addEventListener('change', filterAndSort);
 
         // Initial render
-        renderMembers(membersData);
+        renderMembers(membersData[currentCategory]);
     </script>
-
 </body>
 </html>
