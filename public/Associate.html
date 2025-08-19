@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Member Directory - IICE</title>
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Directory - IICE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,15 +17,20 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
-            color: #333;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
         }
 
+        /* Clean Header */
         .header {
             background: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-bottom: 1px solid #e5e5e5;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .header-content {
@@ -29,149 +39,69 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: bold;
-            font-size: 28px;
-            color: #1e4a73;
-        }
-
-        .logo img {
-            width: 40px;
-            height: 40px;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-menu li {
-            position: relative;
-        }
-
-        .nav-menu a {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2563eb;
             text-decoration: none;
-            color: #333;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #6b7280;
+            text-decoration: none;
             font-weight: 500;
-            padding: 10px 0;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
 
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: #1e4a73;
+        .nav-links a:hover {
+            color: #2563eb;
         }
 
-        .member-btn {
-            background: #1e4a73;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background 0.3s;
-        }
-
-        .member-btn:hover {
-            background: #153a5e;
-        }
-
+        /* Simple Hero */
         .hero {
-            background: linear-gradient(135deg, #1e4a73 0%, #2d5aa0 50%, #1e4a73 100%);
-            color: white;
+            background: white;
+            padding: 60px 24px;
             text-align: center;
-            padding: 80px 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)" /></svg>');
-            opacity: 0.3;
+            border-bottom: 1px solid #e5e5e5;
         }
 
         .hero h1 {
-            font-size: 54px;
-            margin-bottom: 20px;
-            font-weight: 300;
-            position: relative;
-            z-index: 1;
+            font-size: 36px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 12px;
         }
 
-        .tabs {
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .tabs-container {
-            max-width: 1200px;
+        .hero p {
+            font-size: 18px;
+            color: #6b7280;
+            max-width: 600px;
             margin: 0 auto;
-            display: flex;
         }
 
-        .tab {
-            padding: 18px 35px;
-            background: transparent;
-            color: #666;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
-            position: relative;
-        }
-
-        .tab:hover {
-            color: #1e4a73;
-            background: #f8f9fa;
-        }
-
-        .tab.active {
-            color: #1e4a73;
-            border-bottom-color: #1e4a73;
-            background: white;
-        }
-
+        /* Clean Controls */
         .controls {
-            background: #f8f9fa;
-            padding: 25px 0;
-            border-bottom: 1px solid #e9ecef;
+            background: white;
+            padding: 24px 0;
+            border-bottom: 1px solid #e5e5e5;
         }
 
         .controls-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
             display: flex;
-            gap: 20px;
+            gap: 16px;
             align-items: center;
-            flex-wrap: wrap;
         }
 
         .search-input {
@@ -190,212 +120,184 @@
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
-        .search-icon {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-            font-size: 18px;
-        }
-
-        .filter-select, .sort-select {
-            padding: 12px 18px;
-            border: 2px solid #e9ecef;
+        .filter-select {
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
             border-radius: 8px;
             background: white;
+            font-size: 14px;
             cursor: pointer;
-            font-size: 15px;
-            color: #333;
-            min-width: 140px;
-            transition: border-color 0.3s;
         }
 
-        .filter-select:focus, .sort-select:focus {
+        .filter-select:focus {
             outline: none;
-            border-color: #1e4a73;
+            border-color: #2563eb;
         }
 
+        /* Content */
         .main-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 40px 24px;
         }
 
+        /* Clean Grid */
         .members-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
         }
 
+        /* Minimal Card Design */
         .member-card {
             background: white;
+            border: 1px solid #e5e5e5;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid #f1f3f4;
+            transition: all 0.2s ease;
         }
 
         .member-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #d1d5db;
         }
 
         .member-header {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 30px 25px;
+            padding: 32px 24px 24px;
             text-align: center;
-            border-bottom: 1px solid #f1f3f4;
+            border-bottom: 1px solid #f3f4f6;
         }
 
         .member-avatar {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, #1e4a73, #2d5aa0);
+            width: 64px;
+            height: 64px;
+            background: #2563eb;
             border-radius: 50%;
-            margin: 0 auto 20px;
+            margin: 0 auto 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 20px;
             color: white;
             font-weight: 500;
-            box-shadow: 0 4px 15px rgba(30, 74, 115, 0.3);
         }
 
         .member-name {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 8px;
-            color: #1e4a73;
+            color: #1a1a1a;
+            margin-bottom: 4px;
         }
 
-        .member-title {
-            color: #666;
-            font-size: 15px;
-            font-weight: 500;
+        .member-university {
+            font-size: 14px;
+            color: #6b7280;
         }
 
         .member-details {
-            padding: 25px;
+            padding: 24px;
         }
 
-        .detail-section {
-            margin-bottom: 18px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #f8f9fa;
+        .detail-item {
+            margin-bottom: 16px;
         }
 
-        .detail-section:last-child {
+        .detail-item:last-child {
             margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
         }
 
         .detail-label {
+            font-size: 12px;
             font-weight: 600;
-            color: #1e4a73;
-            font-size: 13px;
+            color: #6b7280;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
         }
 
         .detail-value {
-            font-size: 15px;
-            color: #555;
+            font-size: 14px;
+            color: #1a1a1a;
             line-height: 1.5;
         }
 
         .research-link {
-            color: #1e4a73;
+            color: #2563eb;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
         }
 
         .research-link:hover {
-            color: #2d5aa0;
             text-decoration: underline;
         }
 
+        .email-link {
+            color: #6b7280;
+            text-decoration: none;
+        }
+
+        .email-link:hover {
+            color: #2563eb;
+        }
+
+        /* No Results */
         .no-results {
             text-align: center;
-            padding: 80px 20px;
-            color: #666;
+            padding: 80px 24px;
+            color: #6b7280;
         }
 
         .no-results h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #1e4a73;
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #1a1a1a;
         }
 
-        .no-results p {
-            font-size: 16px;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
-                gap: 15px;
+                gap: 16px;
             }
 
-            .nav-menu {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
+            .nav-links {
+                gap: 24px;
+            }
+
+            .hero {
+                padding: 40px 24px;
             }
 
             .hero h1 {
-                font-size: 42px;
-            }
-
-            .tabs-container {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .tab {
-                padding: 15px 25px;
-                font-size: 15px;
+                font-size: 28px;
             }
 
             .controls-container {
                 flex-direction: column;
-                gap: 15px;
+                gap: 12px;
             }
 
-            .search-box {
+            .search-input {
                 max-width: 100%;
+                width: 100%;
             }
 
             .members-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 16px;
             }
 
-            .member-card {
-                margin: 0 10px;
+            .main-content {
+                padding: 24px 16px;
             }
         }
 
         @media (max-width: 480px) {
-            .hero {
-                padding: 60px 15px;
-            }
-
             .hero h1 {
-                font-size: 36px;
-            }
-
-            .main-content {
-                padding: 30px 15px;
+                font-size: 24px;
             }
 
             .member-header {
-                padding: 25px 20px;
+                padding: 24px 20px 20px;
             }
 
             .member-details {
@@ -404,10 +306,11 @@
         }
     </style>
 </head>
+
 <body>
         <head>
             <meta charset="utf-8">
-            <title>About IICE</title>
+            <title>Members</title>
             <meta content="width=device-width, initial-scale=1.0" name="viewport">
             <meta content="" name="keywords">
             <meta content="" name="description">
@@ -446,7 +349,7 @@
             <!-- Text Content -->
             <div class="container text-center pt-5 pb-3 position-relative" style="z-index:2;">
                 <h1 class="display-4 text-white fw-bold animated slideInDown mb-2">Members</h1>
-                <h3 class="text-white fw-light animated slideInDown mb-3">Fellow</h3>
+                <h3 class="text-white fw-light animated slideInDown mb-3">Associate</h3>
             </div>
         </div>
         <!-- Page Header End -->
@@ -550,64 +453,106 @@
         </div>
     </section>
 
+    <!-- Content -->
     <main class="main-content">
-        <div class="members-grid" id="membersGrid">
-            <!-- Members will be populated by JavaScript -->
-        </div>
+        <div class="members-grid" id="membersGrid"></div>
         <div class="no-results" id="noResults" style="display: none;">
             <h3>No members found</h3>
-            <p>Try adjusting your search or filter criteria</p>
+            <p>Try adjusting your search or filter criteria.</p>
         </div>
     </main>
 
-        // Sample member data
     <script>
-        // Core members only
+        // Member data
         const membersData = [
             {
-                name: "PROF. TS. DR. SALMAN YUSSOF",
-                title: "Director",
-                email: "Salman@uniten.edu.my",
-                researchArea: "Computer Systems and Networks, Cyber Security, Smart Grid, Internet of Things, Emergency Informatics",
-                qualification: "BSc. Elec & Comp. Eng (Carnegie Mellon University, USA), MSc. Elec & Comp. Eng (Carnegie Mellon University, USA), Ph.D. (Universiti Tenaga Nasional, Malaysia))",
-                department: "Computer Science"
+                name: "Prof. Bo Nørregaard Jørgensen",
+                university: "University of Southern Denmark",
+                email: "bnj@mmmi.sdu.dk",
+                researchArea: "Energy Informatics, Energy Ecosystem, Multi-agent Systems",
+                qualification: "BSc Computer System Engineering, MSc, PhD Computer Science",
+                department: "Computer Science",
+                category: "computer-science"
             },
             {
-                name: "TS. DR. NAZRITA IBRAHIM",
-                title: "Senior Researcher",
-                email: "nazrita[at]uniten.edu.my",
-                researchArea: "User Experience Design, Information Visualisation, Energy Informatics",
-                qualification: "BA (Mod) Comp. Sci. (Trinity College, University of Dublin, Ireland), M.Comp.Sci (Universiti Malaya, Malaysia), Ph.D. (Universiti Kebangsaan Malaysia, Malaysia)",
-                department: "Computer Science"
+                name: "Prof. Ts. Dr. Manjit Singh Sidhu",
+                university: "University Tenaga Nasional",
+                email: "manjit@uniten.edu.my",
+                researchArea: "Interaction Design & User Experience, IoT & RFID Systems",
+                qualification: "BSc Computer Science, MSc IT, PhD Multimedia",
+                department: "Computer Science",
+                category: "computer-science"
+            },
+            {
+                name: "Dr. Sarah Chen",
+                university: "Nanyang Technological University",
+                email: "sarah.chen@ntu.edu.sg",
+                researchArea: "Artificial Intelligence, Machine Learning, Neural Networks",
+                qualification: "BSc Computer Engineering, MSc AI, PhD Machine Learning",
+                department: "Computer Science",
+                category: "computer-science"
+            },
+            {
+                name: "Prof. Ahmad Hassan",
+                university: "King Fahd University",
+                email: "ahmad@kfupm.edu.sa",
+                researchArea: "Renewable Energy Systems, Smart Grid Technology",
+                qualification: "BSc Electrical Engineering, MSc Power Systems, PhD Energy",
+                department: "Engineering",
+                category: "engineering"
+            },
+            {
+                name: "Dr. Elena Petrov",
+                university: "Moscow Institute of Technology",
+                email: "e.petrov@mit.ru",
+                researchArea: "Quantum Computing, Cryptography, Information Security",
+                qualification: "BSc Mathematics, MSc Cryptography, PhD Quantum Computing",
+                department: "Research",
+                category: "research"
+            },
+            {
+                name: "Prof. James Thompson",
+                university: "Stanford University",
+                email: "j.thompson@stanford.edu",
+                researchArea: "Biomedical Engineering, Medical Devices, Healthcare Innovation",
+                qualification: "BSc Bioengineering, MSc Medical Engineering, PhD Biomedical",
+                department: "Engineering",
+                category: "engineering"
             }
         ];
 
-        function createMemberCard(member) {
-            const initials = member.name.split(' ').map(n => n[0]).join('');
+        function getInitials(name) {
+            return name.split(' ').map(n => n[0]).slice(0, 2).join('');
+        }
 
+        function createMemberCard(member) {
             return `
                 <div class="member-card">
                     <div class="member-header">
-                        <div class="member-avatar">${initials}</div>
+                        <div class="member-avatar">${getInitials(member.name)}</div>
                         <div class="member-name">${member.name}</div>
-                        <div class="member-title">${member.title}</div>
+                        <div class="member-university">${member.university}</div>
                     </div>
                     <div class="member-details">
-                        <div class="detail-section">
+                        <div class="detail-item">
+                            <div class="detail-label">Research Area</div>
+                            <div class="detail-value">
+                                <a href="#" class="research-link">${member.researchArea}</a>
+                            </div>
+                        </div>
+                        <div class="detail-item">
                             <div class="detail-label">Qualification</div>
                             <div class="detail-value">${member.qualification}</div>
                         </div>
-                        <div class="detail-section">
-                            <div class="detail-label">Research Area</div>
-                            <div class="detail-value">${member.researchArea}</div>
-                        </div>
-                        <div class="detail-section">
+                        <div class="detail-item">
                             <div class="detail-label">Department</div>
                             <div class="detail-value">${member.department}</div>
                         </div>
-                        <div class="detail-section">
+                        <div class="detail-item">
                             <div class="detail-label">Email</div>
-                            <div class="detail-value">${member.email}</div>
+                            <div class="detail-value">
+                                <a href="mailto:${member.email}" class="email-link">${member.email}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -617,13 +562,13 @@
         function renderMembers(members) {
             const grid = document.getElementById('membersGrid');
             const noResults = document.getElementById('noResults');
-
+            
             if (members.length === 0) {
                 grid.style.display = 'none';
                 noResults.style.display = 'block';
                 return;
             }
-
+            
             grid.style.display = 'grid';
             noResults.style.display = 'none';
             grid.innerHTML = members.map(createMemberCard).join('');
@@ -631,44 +576,42 @@
 
         function filterAndSort() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filterValue = document.getElementById('filterSelect').value;
             const sortValue = document.getElementById('sortSelect').value;
-
+            
             let filtered = [...membersData];
-
-            // Apply search
+            
             if (searchTerm) {
-                filtered = filtered.filter(member =>
+                filtered = filtered.filter(member => 
                     member.name.toLowerCase().includes(searchTerm) ||
                     member.researchArea.toLowerCase().includes(searchTerm) ||
-                    member.department.toLowerCase().includes(searchTerm) ||
-                    member.qualification.toLowerCase().includes(searchTerm)
+                    member.university.toLowerCase().includes(searchTerm)
                 );
             }
-
-            // Apply sort
+            
+            if (filterValue) {
+                filtered = filtered.filter(member => member.category === filterValue);
+            }
+            
             filtered.sort((a, b) => {
-                switch (sortValue) {
-                    case 'name':
-                        return a.name.localeCompare(b.name);
-                    case 'title':
-                        return a.title.localeCompare(b.title);
-                    case 'research':
-                        return a.researchArea.localeCompare(b.researchArea);
-                    default:
-                        return 0;
+                switch(sortValue) {
+                    case 'name': return a.name.localeCompare(b.name);
+                    case 'university': return a.university.localeCompare(b.university);
+                    case 'research': return a.researchArea.localeCompare(b.researchArea);
+                    default: return 0;
                 }
             });
-
+            
             renderMembers(filtered);
         }
 
         // Event listeners
         document.getElementById('searchInput').addEventListener('input', filterAndSort);
+        document.getElementById('filterSelect').addEventListener('change', filterAndSort);
         document.getElementById('sortSelect').addEventListener('change', filterAndSort);
 
         // Initial render
         renderMembers(membersData);
     </script>
-
 </body>
 </html>
