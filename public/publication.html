@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Publications - IICE UNITEN</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IICE publications, research books, energy informatics" name="keywords">
+    <meta content="Browse and order publications from the Institute of Informatics and Computing in Energy" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        /* Additional styles for publication page */
+        .publication-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: none;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .publication-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .publication-card:hover .publication-image {
+            transform: scale(1.05);
+        }
+
+        .publication-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .publication-authors {
+            color: var(--gray);
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+
+        .publication-year {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .publication-description {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn-order {
+            background: linear-gradient(135deg, var(--white) 0%, #ab2222 100%);
+            border: none;
+            color: var(--dark);
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-order:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(232, 183, 48, 0.4);
+            color: var(--dark);
+        }
+
+        .filters-section {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .admin-panel {
+            display: none;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .admin-toggle {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .admin-toggle:hover {
+            background: var(--red);
+            color: var(--dark);
+            transform: scale(1.1);
+        }
+
+        .orders-table {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .table th {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        .table td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: middle;
+        }
+
+        .status-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-approved {
+            background: #cce5ff;
+            color: var(--primary);
+        }
+
+        .status-shipped {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .order-modal .modal-content {
+            border-radius: 8px;
+            border: none;
+        }
+
+        .order-modal .modal-header {
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 8px 8px 0 0;
+            border: none;
+        }
+
+        .out-of-stock-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+
+        .pagination .page-link {
+            color: var(--primary);
+            border-color: #dee2e6;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .pagination .page-link:hover {
+            color: var(--secondary);
+        }
+
+        @media (max-width: 768px) {
+            .admin-toggle {
+                right: 10px;
+                top: 90px;
+            }
+            
+            .filters-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+        <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
+            <img src="img/iice.png" alt="IICE Logo" style="height:50px;">
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav mx-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Members</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="fellow.html" class="dropdown-item">Fellow</a>
+                        <a href="associate.html" class="dropdown-item">Associate</a>
+                        <a href="postdoctoral.html" class="dropdown-item">Postdoctoral</a>
+                        <a href="postgraduate.html" class="dropdown-item">Postgraduate</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Research</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="researcharea.html" class="dropdown-item">Research Area</a>
+                        <a href="researchproject.html" class="dropdown-item">Research Project</a>
+                        <a href="consultancy.html" class="dropdown-item">Consultancy</a>
+                        <a href="researchprofile.html" class="dropdown-item">IICE Research Profile</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Training</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="trainingcategory.html" class="dropdown-item">Category</a>
+                        <a href="trainerprofile.html" class="dropdown-item">Trainer Profile</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Activity</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="chairactivity.html" class="dropdown-item">Chair in EI</a>
+                        <a href="staffactivity.html" class="dropdown-item">Staff</a>
+                        <a href="studentactivity.html" class="dropdown-item">Student</a>
+                    </div>
+                </div>
+                <a href="chairinei.html" class="nav-item nav-link">Chair in EI</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="aboutiice.html" class="dropdown-item">About</a>
+                        <a href="linkages.html" class="dropdown-item">Linkages</a>
+                        <a href="fundproviders.html" class="dropdown-item">Fund Providers</a>
+                        <a href="publication.html" class="dropdown-item active">Publication</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Page Header Start -->
+    <div class="container-fluid p-0 pb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="owl-carousel header-carousel position-relative">
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="img/publication.jpg" alt="UNITEN">
+                <div class="owl-carousel-inner">
+                    <div class="container text-center pt-5 pb-3">
+                        <h1 class="display-4 text-light animated slideInDown mb-3">Publications</h1>
+                        <nav aria-label="breadcrumb animated slideInDown">
+                            <ol class="breadcrumb justify-content-center mb-0">
+                                <li class="breadcrumb-item"><a class="text-light" href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a class="text-light">About</a></li>
+                                <li class="breadcrumb-item text-primary active" aria-current="page">Publication</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Publications Section Start -->
+    <div class="container-xxl bg-light my-6 py-6 pt-0">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <p class="text-primary text-uppercase mb-2">// Publications</p>
+                <h1 class="display-6 mb-4">IICE Research Publications & Books</h1>
+                <p class="mb-0">Explore our comprehensive collection of research publications, books, and academic resources covering energy informatics, smart grid technologies, and sustainable computing solutions.</p>
+            </div>
+
+            <!-- Admin Panel -->
+            <div id="adminPanel" class="admin-panel wow fadeInUp" data-wow-delay="0.1s">
+                <h3><i class="fas fa-shield-alt me-2"></i>Admin Dashboard</h3>
+                <p class="mb-4">Manage publication orders and inventory</p>
+                
+                <div class="row mb-4">
+                    <div class="col-md-3 col-6">
+                        <div class="text-center">
+                            <h2 id="totalOrders" class="text-warning">12</h2>
+                            <small>Total Orders</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="text-center">
+                            <h2 id="pendingOrders" class="text-warning">5</h2>
+                            <small>Pending</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="text-center">
+                            <h2 id="approvedOrders" class="text-warning">4</h2>
+                            <small>Approved</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="text-center">
+                            <h2 id="shippedOrders" class="text-warning">3</h2>
+                            <small>Shipped</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="orders-table">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Publication</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Orders will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="filters-section wow fadeInUp" data-wow-delay="0.2s">
+                <div class="row align-items-center">
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <h5><i class="fas fa-filter me-2 text-primary"></i>Filter Publications</h5>
+                    </div>
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <select id="categoryFilter" class="form-select">
+                            <option value="all">All Categories</option>
+                            <option value="book">Books</option>
+                            <option value="journal">Journal Articles</option>
+                            <option value="conference">Conference Papers</option>
+                            <option value="report">Research Reports</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <select id="yearFilter" class="form-select">
+                            <option value="all">All Years</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2021">2020</option>
+                            <option value="2021">2019</option>
+                            <option value="2021">2018</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search publications...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Publications Grid -->
+            <div id="publicationsContainer" class="row g-4">
+                <!-- Publications will be populated here -->
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Publications pagination" class="mt-5">
+                <ul class="pagination justify-content-center" id="pagination">
+                    <!-- Pagination will be populated here -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- Publications Section End -->
+
+    <!-- Order Modal -->
+    <div class="modal fade order-modal" id="orderModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-shopping-cart me-2"></i>Order Publication</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="orderForm">
+                        <input type="hidden" id="publicationId">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img id="modalImage" src="" alt="" class="img-fluid rounded">
+                            </div>
+                            <div class="col-md-8">
+                                <h4 id="modalTitle" class="mb-3 text-primary"></h4>
+                                <p id="modalAuthors" class="text-muted mb-3"></p>
+                                <p id="modalDescription" class="mb-4"></p>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Full Name *</label>
+                                        <input type="text" class="form-control" id="customerName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Email *</label>
+                                        <input type="email" class="form-control" id="customerEmail" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" id="customerPhone">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Institution</label>
+                                        <input type="text" class="form-control" id="customerInstitution">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">Delivery Address *</label>
+                                        <textarea class="form-control" id="deliveryAddress" rows="3" required></textarea>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Quantity *</label>
+                                        <select class="form-select" id="quantity" required>
+                                            <option value="1">1 copy</option>
+                                            <option value="2">2 copies</option>
+                                            <option value="3">3 copies</option>
+                                            <option value="5">5 copies</option>
+                                            <option value="10">10 copies</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Purpose</label>
+                                        <select class="form-select" id="purpose">
+                                            <option value="research">Research</option>
+                                            <option value="teaching">Teaching</option>
+                                            <option value="personal">Personal Study</option>
+                                            <option value="library">Library Collection</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="submitOrder()">
+                        <i class="fas fa-paper-plane me-2"></i>Submit Order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer my-6 mb-0 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="row g-5 px-5">
+            <!-- Office Address -->
+            <div class="col-lg-5 col-md-6">
+                <h4 class="text-light mb-4">Office Address</h4>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Institute of Informatics and Computing in Energy,<br>
+                    Universiti Tenaga Nasional,<br>
+                    Jalan IKRAM-UNITEN,<br>
+                    43000 Kajang,<br>
+                    Selangor, Malaysia</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+6 (0) 3 8921 7370 (Director)</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>iice@uniten.edu.my</p>
+
+                <div class="d-flex pt-2">
+                    <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-3 col-md-6 ms-auto">
+                <h4 class="text-light mb-4">Quick Links</h4>
+                <a class="btn btn-link" href="aboutiice.html">About Us</a>
+                <a class="btn btn-link" href="researcharea.html">Research</a>
+                <a class="btn btn-link" href="publication.html">Publications</a>
+                <a class="btn btn-link" href="linkages.html">Linkages</a>
+                <a class="btn btn-link" href="chairinei.html">Chair in EI</a>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
+        <div class="row px-5">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                &copy; <a href="index.html">IICE</a>, All Right Reserved.
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+    <script>
+        // Sample publications data
+        const publications = [
+            {
+                id: 1,
+                title: "Synergising Humanities, Science & Disparate Technology to Fusion Technologies",
+                authors: "Halimah Badioze Zaman",
+                year: 2020,
+                category: "book",
+                image: src="img/publication-1.png",
+                description: "",
+                available: true
+            },
+            {
+                id: 2,
+                title: "Strategic Research Roadmap 2021-2025",
+                authors: "Hazleen Aris, Halimah Badioze Zaman, Nazrita Ibrahim, Salman Yussof, Moamin A Mahmoud, Wahidah Hashim",
+                year: 2021,
+                category: "book",
+                image: src="img/publication-2.png",
+                description: "",
+                available: true
+            },
+            {
+                id: 3,
+                title: "IICE Research Profile 2018 - 2019",
+                authors: "Institute of Informatics and Computing in Energy",
+                year: 2019,
+                category: "book",
+                image: src="img/publication-3.jpg",
+                description: "",
+                available: true
+            },
+        ];
+
+        // Sample orders data for admin
+        let orders = [
+            {
+                id: 'ORD001',
+                publicationTitle: 'Energy Informatics: Fundamentals and Applications',
+                customerName: 'Dr. Ahmad Zaki',
+                customerEmail: 'ahmad.zaki@example.com',
+                orderDate: '2024-08-15',
+                status: 'pending',
+                quantity: 2
+            },
+            {
+                id: 'ORD002',
+                publicationTitle: 'Smart Grid Implementation in Southeast Asia',
+                customerName: 'Sarah Chen',
+                customerEmail: 'sarah.chen@university.edu',
+                orderDate: '2024-08-10',
+                status: 'approved',
+                quantity: 1
+            },
+            {
+                id: 'ORD003',
+                publicationTitle: 'Machine Learning for Energy Optimization',
+                customerName: 'Prof. Johnson',
+                customerEmail: 'johnson@research.org',
+                orderDate: '2024-08-05',
+                status: 'shipped',
+                quantity: 3
+            }
+        ];
+
+        let currentPage = 1;
+        const itemsPerPage = 6;
+        let filteredPublications = [...publications];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPublications();
+            renderOrders();
+            setupEventListeners();
+            
+            // Hide spinner
+            setTimeout(() => {
+                document.getElementById('spinner').classList.remove('show');
+            }, 1000);
+        });
+
+        function setupEventListeners() {
+            document.getElementById('categoryFilter').addEventListener('change', filterPublications);
+            document.getElementById('yearFilter').addEventListener('change', filterPublications);
+            document.getElementById('searchInput').addEventListener('input', filterPublications);
+        }
+
+        function filterPublications() {
+            const category = document.getElementById('categoryFilter').value;
+            const year = document.getElementById('yearFilter').value;
+            const search = document.getElementById('searchInput').value.toLowerCase();
+
+            filteredPublications = publications.filter(pub => {
+                const matchCategory = category === 'all' || pub.category === category;
+                const matchYear = year === 'all' || pub.year.toString() === year;
+                const matchSearch = search === '' || 
+                    pub.title.toLowerCase().includes(search) ||
+                    pub.authors.toLowerCase().includes(search) ||
+                    pub.description.toLowerCase().includes(search);
+                
+                return matchCategory && matchYear && matchSearch;
+            });
+
+            currentPage = 1;
+            renderPublications();
+        }
+
+        function renderPublications() {
+            const container = document.getElementById('publicationsContainer');
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const currentPublications = filteredPublications.slice(startIndex, endIndex);
+
+            container.innerHTML = currentPublications.map(pub => `
+                <div class="col-lg-4 col-md-6 publication-item wow fadeInUp" data-wow-delay="0.${Math.random().toString().substr(2, 1)}s">
+                    <div class="publication-card ${!pub.available ? 'opacity-75' : ''}">
+                        <div class="position-relative overflow-hidden">
+                            <img src="${pub.image}" alt="${pub.title}" class="publication-image">
+                            ${!pub.available ? '<div class="out-of-stock-badge">Out of Stock</div>' : ''}
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <h5 class="publication-title">${pub.title}</h5>
+                            <p class="publication-authors">${pub.authors}</p>
+                            <span class="publication-year">${pub.year}</span>
+                            <p class="publication-description">${pub.description}</p>
+                            <div class="mt-auto">
+                                ${pub.available ? 
+                                    `<button class="btn btn-order w-100" onclick="openOrderModal(${pub.id})">
+                                        <i class="fas fa-shopping-cart me-2"></i>Order Now
+                                    </button>` :
+                                    `<button class="btn btn-secondary w-100" disabled>
+                                        <i class="fas fa-ban me-2"></i>Currently Unavailable
+                                    </button>`
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
+            const pagination = document.getElementById('pagination');
+            
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+
+            let paginationHTML = '';
+            
+            // Previous button
+            if (currentPage > 1) {
+                paginationHTML += `
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                `;
+            }
+
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === currentPage) {
+                    paginationHTML += `<li class="page-item active"><span class="page-link">${i}</span></li>`;
+                } else {
+                    paginationHTML += `<li class="page-item"><a class="page-link" href="#" onclick="changePage(${i})">${i}</a></li>`;
+                }
+            }
+
+            // Next button
+            if (currentPage < totalPages) {
+                paginationHTML += `
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                `;
+            }
+
+            pagination.innerHTML = paginationHTML;
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            renderPublications();
+            document.getElementById('publicationsContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openOrderModal(publicationId) {
+            const publication = publications.find(p => p.id === publicationId);
+            if (!publication) return;
+
+            document.getElementById('publicationId').value = publication.id;
+            document.getElementById('modalImage').src = publication.image;
+            document.getElementById('modalTitle').textContent = publication.title;
+            document.getElementById('modalAuthors').textContent = publication.authors;
+            document.getElementById('modalDescription').textContent = publication.description;
+
+            // Reset form
+            document.getElementById('orderForm').reset();
+            
+            const modal = new bootstrap.Modal(document.getElementById('orderModal'));
+            modal.show();
+        }
+
+        function submitOrder() {
+            const form = document.getElementById('orderForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const formData = {
+                publicationId: document.getElementById('publicationId').value,
+                customerName: document.getElementById('customerName').value,
+                customerEmail: document.getElementById('customerEmail').value,
+                customerPhone: document.getElementById('customerPhone').value,
+                customerInstitution: document.getElementById('customerInstitution').value,
+                deliveryAddress: document.getElementById('deliveryAddress').value,
+                quantity: document.getElementById('quantity').value,
+                purpose: document.getElementById('purpose').value
+            };
+
+            // Generate order ID
+            const orderId = 'ORD' + String(orders.length + 1).padStart(3, '0');
+            const publication = publications.find(p => p.id == formData.publicationId);
+
+            // Add to orders
+            orders.unshift({
+                id: orderId,
+                publicationTitle: publication.title,
+                customerName: formData.customerName,
+                customerEmail: formData.customerEmail,
+                orderDate: new Date().toISOString().split('T')[0],
+                status: 'pending',
+                quantity: parseInt(formData.quantity)
+            });
+
+            // Update admin stats
+            updateAdminStats();
+            renderOrders();
+
+            // Close modal and show success message
+            const modal = bootstrap.Modal.getInstance(document.getElementById('orderModal'));
+            modal.hide();
+
+            // Show success alert
+            alert(`Order ${orderId} submitted successfully! You will receive a confirmation email shortly.`);
+        }
+
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function renderOrders() {
+            const tbody = document.getElementById('ordersTableBody');
+            tbody.innerHTML = orders.map(order => `
+                <tr>
+                    <td><strong>${order.id}</strong></td>
+                    <td>${order.publicationTitle}</td>
+                    <td>
+                        <div>${order.customerName}</div>
+                        <small class="text-muted">${order.customerEmail}</small>
+                    </td>
+                    <td>${order.orderDate}</td>
+                    <td><span class="status-badge status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span></td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-outline-primary" onclick="updateOrderStatus('${order.id}', 'approved')">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="btn btn-outline-success" onclick="updateOrderStatus('${order.id}', 'shipped')">
+                                <i class="fas fa-shipping-fast"></i>
+                            </button>
+                            <button class="btn btn-outline-danger" onclick="deleteOrder('${order.id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateOrderStatus(orderId, newStatus) {
+            const orderIndex = orders.findIndex(o => o.id === orderId);
+            if (orderIndex !== -1) {
+                orders[orderIndex].status = newStatus;
+                updateAdminStats();
+                renderOrders();
+            }
+        }
+
+        function deleteOrder(orderId) {
+            if (confirm('Are you sure you want to delete this order?')) {
+                orders = orders.filter(o => o.id !== orderId);
+                updateAdminStats();
+                renderOrders();
+            }
+        }
+
+        function updateAdminStats() {
+            document.getElementById('totalOrders').textContent = orders.length;
+            document.getElementById('pendingOrders').textContent = orders.filter(o => o.status === 'pending').length;
+            document.getElementById('approvedOrders').textContent = orders.filter(o => o.status === 'approved').length;
+            document.getElementById('shippedOrders').textContent = orders.filter(o => o.status === 'shipped').length;
+        }
+    </script>
+</body>
+
+</html>

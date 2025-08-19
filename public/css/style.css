@@ -156,7 +156,13 @@ a:hover {
 
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link.active {
-    color: var(--primary) !important;
+    color: var(--primary);
+    color: var(--white) !important;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+    background-color: var(--secondary); 
+    color: var(--white) !important;
 }
 
 .navbar .navbar-nav .nav-link.active::after {
@@ -166,7 +172,7 @@ a:hover {
     left: 15px;
     right: 15px;
     height: 3px;
-    background: var(--accent-red);
+    background: var(--secondary);
 }
 
 .navbar.fixed-top {
