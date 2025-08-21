@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>Dashboard - IICE Uniten</title>
+
+    <meta name="description" content="International Integrated Engineering Center - Universiti Tenaga Nasional" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../assets/js/config.js"></script>
+    
+    <style>
+      .app-brand-logo svg {
+        width: 40px;
+        height: 40px;
+      }
+      .research-card {
+        border-left: 4px solid #696cff;
+      }
+      .publication-card {
+        border-left: 4px solid #71dd37;
+      }
+      .project-card {
+        border-left: 4px solid #ffab00;
+      }
+      .event-card {
+        border-left: 4px solid #ff3e1d;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="index.html" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="10" y="10" width="80" height="80" fill="#1a237e" rx="10" />
+                  <text x="50" y="45" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">IICE</text>
+                  <text x="50" y="65" text-anchor="middle" fill="#fff" font-size="10">UNITEN</text>
+                </svg>
+              </span>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2">IICE Uniten</span>
+            </a>
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+              <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
+          </div>
+
+          <div class="menu-inner-shadow"></div>
+
+          <ul class="menu-inner py-1">
+            <!-- Dashboard -->
+            <li class="menu-item active">
+              <a href="index.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
+
+            <!-- Research -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-research"></i>
+                <div data-i18n="Research">Research</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="research-projects.html" class="menu-link">
+                    <div data-i18n="Projects">Projects</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="research-publications.html" class="menu-link">
+                    <div data-i18n="Publications">Publications</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="research-grants.html" class="menu-link">
+                    <div data-i18n="Grants">Grants</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Academics -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-book"></i>
+                <div data-i18n="Academics">Academics</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="academics-courses.html" class="menu-link">
+                    <div data-i18n="Courses">Courses</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="academics-programs.html" class="menu-link">
+                    <div data-i18n="Programs">Programs</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="academics-workshops.html" class="menu-link">
+                    <div data-i18n="Workshops">Workshops</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Events -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-calendar-event"></i>
+                <div data-i18n="Events">Events</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="events-conferences.html" class="menu-link">
+                    <div data-i18n="Conferences">Conferences</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="events-seminars.html" class="menu-link">
+                    <div data-i18n="Seminars">Seminars</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="events-webinars.html" class="menu-link">
+                    <div data-i18n="Webinars">Webinars</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Collaboration -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-network-chart"></i>
+                <div data-i18n="Collaboration">Collaboration</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="collab-industry.html" class="menu-link">
+                    <div data-i18n="Industry">Industry</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="collab-international.html" class="menu-link">
+                    <div data-i18n="International">International</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="collab-mou.html" class="menu-link">
+                    <div data-i18n="MoU">MoU</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Resources -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-cube"></i>
+                <div data-i18n="Resources">Resources</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="resources-labs.html" class="menu-link">
+                    <div data-i18n="Labs">Labs</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="resources-library.html" class="menu-link">
+                    <div data-i18n="Library">Library</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="resources-software.html" class="menu-link">
+                    <div data-i18n="Software">Software</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- People -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="People">People</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="people-faculty.html" class="menu-link">
+                    <div data-i18n="Faculty">Faculty</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="people-researchers.html" class="menu-link">
+                    <div data-i18n="Researchers">Researchers</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="people-students.html" class="menu-link">
+                    <div data-i18n="Students">Students</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- About -->
+            <li class="menu-item">
+              <a href="about.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-info-circle"></i>
+                <div data-i18n="About">About IICE</div>
+              </a>
+            </li>
+          </ul>
+        </aside>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            id="layout-navbar"
+          >
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <!-- Search -->
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item d-flex align-items-center">
+                  <i class="bx bx-search fs-4 lh-0"></i>
+                  <input
+                    type="text"
+                    class="form-control border-0 shadow-none"
+                    placeholder="Search research, events, people..."
+                    aria-label="Search..."
+                  />
+                </div>
+              </div>
+              <!-- /Search -->
+
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <!-- News -->
+                <li class="nav-item lh-1 me-3">
+                  <a class="btn btn-outline-primary btn-sm" href="/news">
+                    <i class="bx bx-news me-1"></i>
+                    News & Updates
+                  </a>
+                </li>
+
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <span class="fw-semibold d-block">Dr. Researcher</span>
+                            <small class="text-muted">Senior Research Fellow</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-user me-2"></i>
+                        <span class="align-middle">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-cog me-2"></i>
+                        <span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <span class="d-flex align-items-center align-middle">
+                          <i class="flex-shrink-0 bx bx-book me-2"></i>
+                          <span class="flex-grow-1 align-middle">My Publications</span>
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="auth-login-basic.html">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+          </nav>
+
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> IICE Overview</h4>
+
+              <div class="row">
+                <!-- Welcome Card -->
+                <div class="col-lg-8 mb-4 order-0">
+                  <div class="card">
+                    <div class="d-flex align-items-end row">
+                      <div class="col-sm-7">
+                        <div class="card-body">
+                          <h5 class="card-title text-primary">Welcome to IICE Uniten! 🎓</h5>
+                          <p class="mb-4">
+                            The International Integrated Engineering Center promotes cutting-edge research and innovation across multiple engineering disciplines. 
+                            <span class="fw-bold">12%</span> increase in research publications this quarter.
+                          </p>
+
+                          <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Research Opportunities</a>
+                        </div>
+                      </div>
+                      <div class="col-sm-5 text-center text-sm-left">
+                        <div class="card-body pb-0 px-0 px-md-4">
+                          <img
+                            src="../assets/img/illustrations/man-with-laptop-light.png"
+                            height="140"
+                            alt="IICE Research"
+                            data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                            data-app-light-img="illustrations/man-with-laptop-light.png"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Stats: Research Projects -->
+                <div class="col-lg-4 col-md-4 order-1">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                      <div class="card research-card">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                              <img
+                                src="../assets/img/icons/unicons/chart-success.png"
+                                alt="Research Projects"
+                                class="rounded"
+                              />
+                            </div>
+                            <div class="dropdown">
+                              <button
+                                class="btn p-0"
+                                type="button"
+                                id="cardOpt3"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                              </div>
+                            </div>
+                          </div>
+                          <span class="fw-semibold d-block mb-1">Research Projects</span>
+                          <h3 class="card-title mb-2">42</h3>
+                          <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +18.2%</small>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Stats: Publications -->
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                      <div class="card publication-card">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                              <img
+                                src="../assets/img/icons/unicons/wallet-info.png"
+                                alt="Publications"
+                                class="rounded"
+                              />
+                            </div>
+                            <div class="dropdown">
+                              <button
+                                class="btn p-0"
+                                type="button"
+                                id="cardOpt6"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
+                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                              </div>
+                            </div>
+                          </div>
+                          <span>Publications</span>
+                          <h3 class="card-title text-nowrap mb-1">127</h3>
+                          <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +12.8%</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Research Areas Chart -->
+                <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+                  <div class="card">
+                    <div class="row row-bordered g-0">
+                      <div class="col-md-8">
+                        <h5 class="card-header m-0 me-2 pb-3">Research Areas Distribution</h5>
+                        <div id="researchAreasChart" class="px-2"></div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="card-body">
+                          <div class="text-center">
+                            <div class="dropdown">
+                              <button
+                                class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                type="button"
+                                id="growthReportId"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                2023
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
+                                <a class="dropdown-item" href="javascript:void(0);">2022</a>
+                                <a class="dropdown-item" href="javascript:void(0);">2021</a>
+                                <a class="dropdown-item" href="javascript:void(0);">2020</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="growthChart"></div>
+                        <div class="text-center fw-semibold pt-3 mb-2">24% Growth in Energy Research</div>
+
+                        <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
+                          <div class="d-flex">
+                            <div class="me-2">
+                              <span class="badge bg-label-primary p-2"><i class="bx bx-chip text-primary"></i></span>
+                            </div>
+                            <div class="d-flex flex-column">
+                              <small>Energy</small>
+                              <h6 class="mb-0">38%</h6>
+                            </div>
+                          </div>
+                          <div class="d-flex">
+                            <div class="me-2">
+                              <span class="badge bg-label-info p-2"><i class="bx bx-microchip text-info"></i></span>
+                            </div>
+                            <div class="d-flex flex-column">
+                              <small>ICT</small>
+                              <h6 class="mb-0">26%</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/ Research Areas Chart -->
+                
+                <!-- Additional Stats -->
+                <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
+                  <div class="row">
+                    <div class="col-6 mb-4">
+                      <div class="card project-card">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                              <img src="../assets/img/icons/unicons/cc-primary.png" alt="Ongoing Projects" class="rounded" />
+                            </div>
+                            <div class="dropdown">
+                              <button
+                                class="btn p-0"
+                                type="button"
+                                id="cardOpt4"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                              </button>
+                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
+                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                              </div>
+                            </div>
+                          </div>
+                          <span class="d-block mb-1">Ongoing Projects</span>
+                          <h3 class="card-title text-nowrap mb-2">24</h3>
+                          <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +8.4%</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6 mb-4">
+                      <div class="card event-card">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0">
+                              <img src="../assets/img/icons/unicons/paypal.png" alt="Upcoming Events" class="rounded" />
+                            </div>
+                            <div class="dropdown">
+                              <button
+                                class="btn p-0"
+                                type="button"
+                                id="cardOpt1"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                              </div>
+                            </div>
+                          </div>
+                          <span class="fw-semibold d-block mb-1">Upcoming Events</span>
+                          <h3 class="card-title mb-2">7</h3>
+                          <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +15.3%</small>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Research Collaboration -->
+                    <div class="col-12 mb-4">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
+                            <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
+                              <div class="card-title">
+                                <h5 class="text-nowrap mb-2">Int'l Collaboration</h5>
+                                <span class="badge bg-label-warning rounded-pill">15 Countries</span>
+                              </div>
+                              <div class="mt-sm-auto">
+                                <small class="text-success text-nowrap fw-semibold"
+                                  ><i class="bx bx-chevron-up"></i> 22.6%</small
+                                >
+                                <h3 class="mb-0">28 Projects</h3>
+                              </div>
+                            </div>
+                            <div id="collaborationChart"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Upcoming Events & Recent Publications -->
+              <div class="row">
+                <!-- Upcoming Events -->
+                <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                      <div class="card-title mb-0">
+                        <h5 class="m-0 me-2">Upcoming Events</h5>
+                        <small class="text-muted">Next 30 Days</small>
+                      </div>
+                      <div class="dropdown">
+                        <button
+                          class="btn p-0"
+                          type="button"
+                          id="upcomingEvents"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="upcomingEvents">
+                          <a class="dropdown-item" href="javascript:void(0);">View All Events</a>
+                          <a class="dropdown-item" href="javascript:void(0);">Add to Calendar</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex flex-column align-items-center gap-1">
+                          <h2 class="mb-2">7</h2>
+                          <span>Events Scheduled</span>
+                        </div>
+                        <div id="upcomingEventsChart"></div>
+                      </div>
+                      <ul class="p-0 m-0">
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-primary"
+                              ><i class="bx bx-calendar-event"></i
+                            ></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <h6 class="mb-0">International Energy Conference</h6>
+                              <small class="text-muted">15-17 Oct, Kuala Lumpur</small>
+                            </div>
+                            <div class="user-progress">
+                              <small class="fw-semibold">Keynote</small>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-success"><i class="bx bx-microchip"></i></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <h6 class="mb-0">AI in Engineering Workshop</h6>
+                              <small class="text-muted">22 Oct, IICE Lab 3</small>
+                            </div>
+                            <div class="user-progress">
+                              <small class="fw-semibold">Hands-on</small>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-info"><i class="bx bx-group"></i></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <h6 class="mb-0">Research Colloquium</h6>
+                              <small class="text-muted">28 Oct, Auditorium</small>
+                            </div>
+                            <div class="user-progress">
+                              <small class="fw-semibold">15 Papers</small>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-secondary"
+                              ><i class="bx bx-network-chart"></i
+                            ></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <h6 class="mb-0">Industry Partnership Meet</h6>
+                              <small class="text-muted">5 Nov, Conference Room</small>
+                            </div>
+                            <div class="user-progress">
+                              <small class="fw-semibold">8 Companies</small>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--/ Upcoming Events -->
+
+                <!-- Research Funding -->
+                <div class="col-md-6 col-lg-4 order-1 mb-4">
+                  <div class="card h-100">
+                    <div class="card-header">
+                      <ul class="nav nav-pills" role="tablist">
+                        <li class="nav-item">
+                          <button
+                            type="button"
+                            class="nav-link active"
+                            role="tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#navs-tabs-line-card-income"
+                            aria-controls="navs-tabs-line-card-income"
+                            aria-selected="true"
+                          >
+                            Grants
+                          </button>
+                        </li>
+                        <li class="nav-item">
+                          <button type="button" class="nav-link" role="tab">Industry</button>
+                        </li>
+                        <li class="nav-item">
+                          <button type="button" class="nav-link" role="tab">International</button>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="card-body px-0">
+                      <div class="tab-content p-0">
+                        <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
+                          <div class="d-flex p-4 pt-3">
+                            <div class="avatar flex-shrink-0 me-3">
+                              <img src="../assets/img/icons/unicons/wallet.png" alt="User" />
+                            </div>
+                            <div>
+                              <small class="text-muted d-block">Total Research Funding</small>
+                              <div class="d-flex align-items-center">
+                                <h6 class="mb-0 me-1">RM 4.82M</h6>
+                                <small class="text-success fw-semibold">
+                                  <i class="bx bx-chevron-up"></i>
+                                  19.8%
+                                </small>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="researchFundingChart"></div>
+                          <div class="d-flex justify-content-center pt-4 gap-2">
+                            <div class="flex-shrink-0">
+                              <div id="fundingBySource"></div>
+                            </div>
+                            <div>
+                              <p class="mb-n1 mt-1">New Grants This Year</p>
+                              <small class="text-muted">RM 1.2M from 8 grants</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--/ Research Funding -->
+
+                <!-- Recent Publications -->
+                <div class="col-md-6 col-lg-4 order-2 mb-4">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                      <h5 class="card-title m-0 me-2">Recent Publications</h5>
+                      <div class="dropdown">
+                        <button
+                          class="btn p-0"
+                          type="button"
+                          id="recentPublications"
+                          data-bs-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="recentPublications">
+                          <a class="dropdown-item" href="javascript:void(0);">Last 3 Months</a>
+                          <a class="dropdown-item" href="javascript:void(0);">Last 6 Months</a>
+                          <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <ul class="p-0 m-0">
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-book"></i></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <small class="text-muted d-block mb-1">Energy Research</small>
+                              <h6 class="mb-0">Advanced Solar Cell Efficiency</h6>
+                            </div>
+                            <div class="user-progress d-flex align-items-center gap-1">
+                              <h6 class="mb-0">Q1</h6>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-success"><i class="bx bx-book"></i></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <small class="text-muted d-block mb-1">AI Applications</small>
+                              <h6 class="mb-0">ML for Predictive Maintenance</h6>
+                            </div>
+                            <div class="user-progress d-flex align-items-center gap-1">
+                              <h6 class="mb-0">Q2</h6>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-info"><i class="bx bx-book"></i></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <small class="text-muted d-block mb-1">Materials Science</small>
+                              <h6 class="mb-0">Graphene Composite Materials</h6>
+                            </div>
+                            <div class="user-progress d-flex align-items-center gap-1">
+                              <h6 class="mb-0">Q1</h6>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-warning"><i class="bx bx-book"></i></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <small class="text-muted d-block mb-1">Sustainable Eng.</small>
+                              <h6 class="mb-0">Carbon Capture Technologies</h6>
+                            </div>
+                            <div class="user-progress d-flex align-items-center gap-1">
+                              <h6 class="mb-0">Q2</h6>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex mb-4 pb-1">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-danger"><i class="bx bx-book"></i></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <small class="text-muted d-block mb-1">IoT Systems</small>
+                              <h6 class="mb-0">Smart Grid Implementation</h6>
+                            </div>
+                            <div class="user-progress d-flex align-items-center gap-1">
+                              <h6 class="mb-0">Q3</h6>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="d-flex">
+                          <div class="avatar flex-shrink-0 me-3">
+                            <span class="avatar-initial rounded bg-label-dark"><i class="bx bx-book"></i></span>
+                          </div>
+                          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                              <small class="text-muted d-block mb-1">Robotics</small>
+                              <h6 class="mb-0">Automated Inspection Systems</h6>
+                            </div>
+                            <div class="user-progress d-flex align-items-center gap-1">
+                              <h6 class="mb-0">Q2</h6>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--/ Recent Publications -->
+              </div>
+            </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                <div class="mb-2 mb-md-0">
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  , made with ❤️ by
+                  <a href="https://iice.uniten.edu.my" target="_blank" class="footer-link fw-bolder">IICE Uniten</a>
+                </div>
+                <div>
+                  <a href="https://iice.uniten.edu.my/about" class="footer-link me-4" target="_blank">About</a>
+                  <a href="https://uniten.edu.my" target="_blank" class="footer-link me-4">UniTen</a>
+                  <a
+                    href="https://iice.uniten.edu.my/contact"
+                    target="_blank"
+                    class="footer-link me-4"
+                    >Contact</a
+                  >
+                  <a
+                    href="https://iice.uniten.edu.my/resources"
+                    target="_blank"
+                    class="footer-link me-4"
+                    >Resources</a
+                  >
+                </div>
+              </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+    <!-- Main JS -->
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="../assets/js/dashboards-analytics.js"></script>
+
+    <script>
+      // Custom chart initialization for IICE
+      document.addEventListener('DOMContentLoaded', function() {
+        // Research Areas Chart
+        var researchAreasChartOptions = {
+          series: [38, 26, 18, 12, 6],
+          chart: {
+            height: 250,
+            type: 'donut',
+          },
+          labels: ['Energy', 'ICT', 'Materials', 'Manufacturing', 'Others'],
+          colors: ['#696cff', '#71dd37', '#ffab00', '#ff3e1d', '#8592a3'],
+          legend: {
+            position: 'bottom'
+          },
+          dataLabels: {
+            enabled: false
+          },
+        };
+        
+        var researchAreasChart = new ApexCharts(
+          document.querySelector("#researchAreasChart"),
+          researchAreasChartOptions
+        );
+        researchAreasChart.render();
+        
+        // Growth Chart (simplified)
+        var growthChartOptions = {
+          series: [{
+            name: 'Research Growth',
+            data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+          }],
+          chart: {
+            height: 100,
+            type: 'line',
+            zoom: {
+              enabled: false
+            },
+            sparkline: {
+              enabled: true
+            }
+          },
+          colors: ['#696cff'],
+          dataLabels: {
+            enabled: false
+          },
+          stroke: {
+            curve: 'straight'
+          },
+          grid: {
+            row: {
+              colors: ['#f3f3f3', 'transparent'],
+              opacity: 0.5
+            },
+          },
+        };
+        
+        var growthChart = new ApexCharts(
+          document.querySelector("#growthChart"),
+          growthChartOptions
+        );
+        growthChart.render();
+        
+        // Collaboration Chart (simplified)
+        var collaborationChartOptions = {
+          series: [{
+            name: 'Collaboration',
+            data: [28, 22, 18, 15, 12, 10, 8]
+          }],
+          chart: {
+            height: 100,
+            type: 'bar',
+            sparkline: {
+              enabled: true
+            }
+          },
+          colors: ['#ffab00'],
+          plotOptions: {
+            bar: {
+              borderRadius: 2,
+              columnWidth: '60%',
+            }
+          },
+        };
+        
+        var collaborationChart = new ApexCharts(
+          document.querySelector("#collaborationChart"),
+          collaborationChartOptions
+        );
+        collaborationChart.render();
+      });
+    </script>
+  </body>
+</html>
